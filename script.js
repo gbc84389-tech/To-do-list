@@ -1,4 +1,6 @@
 const buttonadd = document.getElementById("buttonadd");
+const buttonfiltro = document.getElementById("buttonfiltro");
+let estadoFiltro = "todas";
 
 //Exibe tudo quando a pagina e carregada
 window.addEventListener("load", () => {
@@ -94,3 +96,44 @@ function CriarElementoTarefa(tarefa) {
     //adiciona eles no container da lista
     lista.appendChild(containertarefa);
 }
+
+buttonfiltro.addEventListener("click", () => {
+    //referencia o texto do filtro
+    const spanfiltro = document.getElementById("spanfiltro");
+    //esses ifs verificam em qual estado esta o botao, se tiver em um, troca pro outro
+    //e tambem ja trocam o texto da referencia acima
+    if (estadoFiltro === "todas") {
+        estadoFiltro = "concluidas";
+        spanfiltro.textContent = "Concluidas";
+    }else if(estadoFiltro === "concluidas") {
+        estadoFiltro = "pendentes";
+        spanfiltro.textContent = "Pendentes";
+    }else {
+        estadoFiltro = "todas";
+        spanfiltro.textContent = "Todas";
+    }
+    //referencia os elementos da lista container-tarefa
+    const tarefas = document.querySelectorAll(".container-tarefa");
+
+    //pega cada item da lista e faz com q apareca ou suma de acordo com o filtro
+    tarefas.forEach(tarefas => {
+        //referencia o checkbox de dentro do container-tarefa
+        const checkbox = tarefas.querySelector("input");
+        //esses ifs verificam denovo pra trocar os estados de display deles
+        if(estadoFiltro === "todas") {
+                tarefas.style.display = "flex";
+        }else if(estadoFiltro === "concluidas") {
+                if(checkbox.checked) {
+                    tarefas.style.display = "flex";
+                }else {
+                    tarefas.style.display = "none";
+                }
+        }else {
+                if(checkbox.checked) {
+                    tarefas.style.display = "none";
+                }else {
+                        tarefas.style.display = "flex";
+                }
+        }
+    })
+})

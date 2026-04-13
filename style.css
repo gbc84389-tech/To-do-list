@@ -65,11 +65,15 @@ body {
 /*filtro*/
 .container-filtro {
     display: flex;
-    justify-content: space-between;
     width: 56rem;
     height: 3rem;
+    gap: 10px;
 }
 .span-filtro {
+    align-self: center;
+    font-size: 25px;
+}
+.button-filtro {
     font-size: 25px;
     display: flex;
     align-items: center;
@@ -77,6 +81,14 @@ body {
     border: 2px solid black;
     padding: 10px;
     background-color: #cbcbcb;
+    font-family: cursive;
+    transition: 0.2s ease;
+}
+.button-filtro:hover {
+    transform: scale(1.05);
+}
+.button-filtro:active {
+    transform: scale(1);
 }
 /*tarefas*/
 .container-tarefa {
@@ -114,7 +126,7 @@ body {
 }
 .button-excluir-tarefa:hover,
 .button-editar-tarefa:hover {
-    transform: scale(1.15);
+    transform: scale(1.05);
 }
 .button-editar-tarefa:hover {background: #0d47a1; color: #1976d2;}
 .button-excluir-tarefa:hover {background: #500c0c; color: #ff0400;}
